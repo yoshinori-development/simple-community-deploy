@@ -11,7 +11,7 @@
   "containerDefinitions": [
     {
       "name": "api",
-      "image": "278706633282.dkr.ecr.ap-northeast-1.amazonaws.com/simple-community-api-core:1c76a6414e25f7c88514bdb8b4c98352482e7136",
+      "image": "278706633282.dkr.ecr.ap-northeast-1.amazonaws.com/simple-community-api-core:aab8502c5c9549fcb4999fefd9aca64ebcc63933",
       "portMappings": [
         {
           "protocol": "tcp",
