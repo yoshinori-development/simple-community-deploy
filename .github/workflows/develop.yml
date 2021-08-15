@@ -53,7 +53,7 @@ jobs:
         done
 
     - name: Configure AWS credentials
-      if: ${{ ${{ steps.check-should-deploy.outputs.should-deploy == 'true' }}
+      if: ${{ steps.check-should-deploy.outputs.should-deploy == 'true' }}
       uses: aws-actions/configure-aws-credentials@v1
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
