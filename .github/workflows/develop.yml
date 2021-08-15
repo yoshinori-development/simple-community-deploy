@@ -10,7 +10,7 @@ env:
   AWS_ACCESS_KEY_ID: ${{ secrets.SIMPLE_COMMUNITY_DEV_AWS_ACCESS_KEY_ID }}
   AWS_SECRET_ACCESS_KEY: ${{ secrets.SIMPLE_COMMUNITY_DEV_AWS_SECRET_ACCESS_KEY }}
   SLACK_WEBHOOK: ${{ secrets.SIMPLE_COMMUNITY_DEV_SLACK_WEBHOOK }}
-  ECS_CLUSTER_NAME: simple-commmunity-develop
+  ECS_CLUSTER_NAME: simple-community-develop
 
 jobs:
   deploy:
