@@ -37,19 +37,7 @@ jobs:
       id: check-should-deploy
       run: |
         DIFF=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})
-        for line in `echo $DIFF`
-        do
-          echo $line
-          echo $TASK_DEFINITION_FILE
-          if [[ ${line} =~ ^$TASK_DEFINITION_FILE$ ]]; then
-            echo '::set-output name=should-deploy::true'
-            echo "${{ env.SERVICE_NAME }} diff detected."
-            break
-          else
-            echo '::set-output name=should-deploy::false'
-            echo "${{ env.SERVICE_NAME }} no diff. skip."
-          fi
-        done
+e
 
     - name: Configure AWS credentials
       if: ${{ steps.check-should-deploy.outputs.should-deploy == 'true' }}
