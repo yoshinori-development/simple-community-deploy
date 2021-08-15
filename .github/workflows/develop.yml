@@ -29,14 +29,28 @@ jobs:
 
     - name: Checkout
       uses: actions/checkout@v2
-      # with:
-      #   fetch-depth: 0
+      with:
+        fetch-depth: 0
 
     # 変更が含まれるタスク定義ファイルを検出し、変更が含まれる場合のみ該当サービスのデプロイを行う
     - name: Chack deploy target service-name from git diff
       id: check-should-deploy
       run: |
+        echo "Check diff between ${{ github.event.before }} and ${{ github.sha }}"
         DIFF=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})
+        for line in `echo $DIFF`
+        do
+          echo $line
+          echo $TASK_DEFINITION_FILE
+          if [[ ${line} =~ ^$TASK_DEFINITION_FILE$ ]]; then
+            echo '::set-output name=should-deploy::true'
+            echo "${{ env.SERVICE_NAME }} diff detected."
+            break
+          else
+            echo '::set-output name=should-deploy::false'
+            echo "${{ env.SERVICE_NAME }} no diff. skip."
+          fi
+        done
 
     - name: Configure AWS credentials
       if: ${{ steps.check-should-deploy.outputs.should-deploy == 'true' }}
