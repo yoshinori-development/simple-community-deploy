@@ -1,0 +1,83 @@
+{
+  "family": "simple-community-develop-app-community",
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": [
+    "FARGATE"
+  ],
+  "taskRoleArn": "arn:aws:iam::278706633282:role/simple-community-develop-app-community-task-role",
+  "executionRoleArn": "arn:aws:iam::278706633282:role/simple-community-develop-app-community-task-execution-role",
+  "cpu": "256",
+  "memory": "512",
+  "containerDefinitions": [
+    {
+      "name": "nginx",
+      "image": "278706633282.dkr.ecr.ap-northeast-1.amazonaws.com/careerdb-app-community-nginx:b3723c82e5d8b1a69ecb7b4da1a0a011ce0208b8",
+      "portMappings": [
+        {
+          "protocol": "tcp",
+          "hostPort": 80,
+          "containerPort": 80
+        }
+      ],
+      "environment": [
+        {
+          "name": "PROXY_NODE_RESOLVER",
+          "value": "localhost"
+        },
+        {
+          "name": "PROXY_NODE_HOST",
+          "value": "localhost"
+        },
+        {
+          "name": "PROXY_NODE_PORT",
+          "value": "3000"
+        }
+      ],
+      "secrets": [],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "secretOptions": [],
+        "options": {
+          "awslogs-group": "/aws/ecs/simple-community-develop-app-community",
+          "awslogs-region": "ap-northeast-1",
+          "awslogs-stream-prefix": "nginx"
+        }
+      }
+    },
+    {
+      "name": "node",
+      "image": "278706633282.dkr.ecr.ap-northeast-1.amazonaws.com/careerdb-app-community-node:b3723c82e5d8b1a69ecb7b4da1a0a011ce0208b8",
+      "portMappings": [
+        {
+          "protocol": "tcp",
+          "hostPort": 3000,
+          "containerPort": 3000
+        }
+      ],
+      "environment": [
+        {
+          "name": "API_ENDPOINT_CLIENT",
+          "value": "https://community-dev.career-db.com/api"
+        },
+        {
+          "name": "API_ENDPOINT_SERVER",
+          "value": "http://api-core.dev.careerdb:8000/api"
+        },
+        {
+          "name": "DEBUG",
+          "value": "nuxt:*"
+        }
+      ],
+      "secrets": [],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "secretOptions": [],
+        "options": {
+          "awslogs-group": "/aws/ecs/simple-community-develop-app-community",
+          "awslogs-region": "ap-northeast-1",
+          "awslogs-stream-prefix": "node"
+        }
+      }
+    }
+  ]
+}
