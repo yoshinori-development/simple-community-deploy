@@ -36,7 +36,7 @@ jobs:
     - name: Chack deploy target service-name from git diff
       id: check-should-deploy
       run: |
-        echo "Check diff between ${{ github.event.before }} and echo ${{ github.sha }}"
+        # echo "Check diff between ${{ github.event.before }} and ${{ github.sha }}"
         DIFF=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})
         for line in `echo $DIFF`
         do
