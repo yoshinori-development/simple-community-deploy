@@ -1,17 +1,17 @@
 {
-  "family": "simple-community-develop-api-core",
+  "family": "simple-community-develop-api-main",
   "networkMode": "awsvpc",
   "requiresCompatibilities": [
     "FARGATE"
   ],
-  "taskRoleArn": "arn:aws:iam::278706633282:role/simple-community-develop-api-core-task-role",
-  "executionRoleArn": "arn:aws:iam::278706633282:role/simple-community-develop-api-core-task-execution-role",
+  "taskRoleArn": "arn:aws:iam::278706633282:role/simple-community-develop-api-main-task-role",
+  "executionRoleArn": "arn:aws:iam::278706633282:role/simple-community-develop-api-main-task-execution-role",
   "cpu": "256",
   "memory": "512",
   "containerDefinitions": [
     {
       "name": "api",
-      "image": "278706633282.dkr.ecr.ap-northeast-1.amazonaws.com/simple-community-api-core:1c76a6414e25f7c88514bdb8b4c98352482e7136",
+      "image": "278706633282.dkr.ecr.ap-northeast-1.amazonaws.com/simple-community-api-main:1c76a6414e25f7c88514bdb8b4c98352482e7136",
       "portMappings": [
         {
           "protocol": "tcp",
@@ -36,14 +36,14 @@
       "secrets": [
         {
           "name": "DB_PASSWORD",
-          "valueFrom": "/simple-community/develop/rds/core/password"
+          "valueFrom": "/simple-community/develop/rds/main/password"
         }
       ],
       "logConfiguration": {
         "logDriver": "awslogs",
         "secretOptions": [],
         "options": {
-          "awslogs-group": "/aws/ecs/simple-community-develop-api-core",
+          "awslogs-group": "/aws/ecs/simple-community-develop-api-main",
           "awslogs-region": "ap-northeast-1",
           "awslogs-stream-prefix": "api"
         }

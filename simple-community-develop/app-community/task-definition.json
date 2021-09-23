@@ -61,7 +61,7 @@
         },
         {
           "name": "API_ENDPOINT_SERVER",
-          "value": "http://api-core.dev.careerdb:8000/api"
+          "value": "http://api-main.dev.careerdb:8000/api"
         },
         {
           "name": "DEBUG",

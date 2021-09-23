@@ -20,7 +20,7 @@ jobs:
       status: ${{ job.status }}
     strategy:
       matrix:
-        service-name: [api-core, app-community]
+        service-name: [api-main, app-community]
 
     steps:
     - name: Set env
