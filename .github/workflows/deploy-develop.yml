@@ -1,14 +1,13 @@
 on:
   push:
     branches:
-    - develop
+    - main
 
-name: Deploy ECS Services in Dev environment.
+name: Deploy ECS Services develop environment.
 
 env:
   AWS_REGION: ap-northeast-1
-  AWS_ACCESS_KEY_ID: ${{ secrets.SIMPLE_COMMUNITY_DEV_AWS_ACCESS_KEY_ID }}
-  AWS_SECRET_ACCESS_KEY: ${{ secrets.SIMPLE_COMMUNITY_DEV_AWS_SECRET_ACCESS_KEY }}
+  AWS_ROLE_ARN: arn:aws:iam::858884198044:role/github_deployment_develop
   SLACK_WEBHOOK: ${{ secrets.SIMPLE_COMMUNITY_DEV_SLACK_WEBHOOK }}
   ECS_CLUSTER_NAME: simple-community-develop
 
@@ -52,12 +51,11 @@ jobs:
           fi
         done
 
-    - name: Configure AWS credentials
-      if: ${{ steps.check-should-deploy.outputs.should-deploy == 'true' }}
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
-        role-to-assume: arn:aws:iam::858884198044:role/github_deployment_develop
-        aws-region: ${{ env.AWS_REGION }}
+    - name: Configure AWS Credentials
+      uses: yoshinori-development/simple-community-actions-aws-creds@v1
+      with: 
+        aws_role_arn: ${{ env.AWS_ROLE_ARN }}
+        aws_region: ${{ env.AWS_REGION }}
 
     - name: Login to Amazon ECR
       if: ${{ steps.check-should-deploy.outputs.should-deploy == 'true' }}
