@@ -46,11 +46,11 @@ jobs:
           echo $TASK_DEFINITION_FILE
           if [[ ${line} =~ ^$TASK_DEFINITION_FILE$ ]]; then
             echo '::set-output name=should-deploy::true'
-            echo "${{ env.SERVICE_NAME }} diff detected."
+            echo "${{ matrix.service-name }} diff detected."
             break
           else
             echo '::set-output name=should-deploy::false'
-            echo "${{ env.SERVICE_NAME }} no diff. skip."
+            echo "${{ matrix.service-name }} no diff. skip."
           fi
         done
 
@@ -70,7 +70,7 @@ jobs:
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
       with:
         cluster: ${{ env.ECS_CLUSTER_NAME }}
-        service: ${{ env.SERVICE_NAME }}
+        service: ${{ matrix.service-name }}
         task-definition: ${{ env.TASK_DEFINITION_FILE }}
 
   slackNotification:
