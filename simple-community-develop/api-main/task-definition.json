@@ -34,15 +34,15 @@
         },
         {
           "name": "DATABASE_PORT",
-          "value": 3306
+          "value": "3306"
         },
         {
           "name": "DATABASE_AUTO_MIGRATION",
-          "value": true
+          "value": "true"
         },
         {
           "name": "ROUTER_PORT",
-          "value": 8080
+          "value": "8080"
         },
         {
           "name": "ROUTER_ALLOW_ORIGINS",
