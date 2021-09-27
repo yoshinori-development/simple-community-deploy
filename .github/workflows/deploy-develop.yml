@@ -15,6 +15,9 @@ jobs:
   deploy:
     name: Deploy to ECS (develop)
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
     outputs:
       status: ${{ job.status }}
     strategy:
