@@ -46,7 +46,7 @@
         },
         {
           "name": "ROUTER_ALLOW_ORIGINS",
-          "value": "dev.sc.ysdev.net"
+          "value": "https://dev.sc.ysdev.net"
         },
         {
           "name": "AWS_DEFAULT_REGION",
