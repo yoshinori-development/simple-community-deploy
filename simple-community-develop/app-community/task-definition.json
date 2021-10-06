@@ -11,7 +11,7 @@
   "containerDefinitions": [
     {
       "name": "app",
-      "image": "858884198044.dkr.ecr.ap-northeast-1.amazonaws.com/simple-community-app-community:develop-fd2db907aa874fdee3ef60967aa3f1748a47dd90",
+      "image": "858884198044.dkr.ecr.ap-northeast-1.amazonaws.com/simple-community-app-community:develop-52d730a98ff4d009b2ee01781f2211ca4d64959a",
       "portMappings": [
         {
           "protocol": "tcp",
